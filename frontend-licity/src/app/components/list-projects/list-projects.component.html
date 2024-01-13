@@ -1,0 +1,97 @@
+<div style="text-align: center; border:none;">
+  <h1>Listado de Proyectos</h1>
+</div>
+
+<div class="container">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Imagenes</th>
+        <th>Nombre Proyecto</th>
+        <th>Fecha Inicial</th>
+        <th>Fecha Final</th>
+        <th>Items</th>
+        <th>Accion</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let project of projects">
+        <td>
+          <div *ngFor="let img of project.images">
+            <a href="{{ img.url }}" target="_blank">
+              <img src="{{ img.url }}" alt="{{ img.name_img }}" srcset="" width="60px" height="60px"
+                style="border-radius: 10px; position: absolute;"></a>
+          </div>
+        </td>
+        <td>{{ project.name }}</td>
+        <td>{{ project.initial_date | date:'dd/MM/yyyy' }}</td>
+        <td>{{ project.final_date | date:'dd/MM/yyyy' }}</td>
+        <td>
+          <span *ngFor="let item of project.items">
+            {{ item.item }} - $ {{ item.cost_und }} <br>
+          </span>
+        </td>
+        <td>
+          <button type="button" class="btn btn-outline-dark btn-sm m-2" data-bs-toggle="modal"
+            data-bs-target="#aplicar_proyecto" (click)="showModal(project._id)" title="Aplicar al Proyecto">
+            <i class="fas fa-plus"></i>
+          </button>
+          <button type="button" (click)="deleteProject(project._id)" class="btn btn-outline-dark btn-sm m-2"
+            title="Eliminar" *ngIf="isConstructor()">
+            <i class="fas fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+<div class="modal fade" id="aplicar_proyecto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Aplicar Proyecto</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="p-4">
+        <div *ngFor="let img of detailsProject?.images">
+          <a href="{{ img.url }}" target="_blank">
+            <img src="{{ img.url }}" alt="{{ img.name }}" srcset="" width="100%" style="border-radius: 10px;"></a>
+        </div>
+        <div *ngIf="detailsProject" style="text-align: center; text-transform: capitalize;">
+          <h4>{{ detailsProject.name }}</h4>
+        </div>
+        <div *ngIf="detailsProject">
+          <div class="row">
+            <div class="col-md-6"><b>Fecha Inicial</b> {{ detailsProject.initial_date | date:'dd/MM/yyyy' }}</div>
+            <div class="col-md-6"><b>Fecha Final</b> {{ detailsProject.final_date | date:'dd/MM/yyyy' }}</div>
+          </div>
+        </div>
+        <h5 style="text-align: center; text-transform: capitalize; margin-top: 20px;">Items</h5>
+        <form (ngSubmit)="applyProject()">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Valor Constructor</th>
+                <th>Valor Proveedor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of detailsProject?.items; let i = index">
+                <td>{{ item.item }}</td>
+                <td>{{ item.cost_und }}</td>
+                <td><input type="number" name="cost_supplier_und_{{ i }}" [(ngModel)]="supplierData[i].cost_supplier_und"></td>
+              </tr>
+            </tbody>
+          </table>
+          <button type="submit" class="btn btn-dark m-2" title="Aplicar Proyecto" data-bs-dismiss="modal">
+            <i class="fas fa-plus"></i> Aplicar Proyecto
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

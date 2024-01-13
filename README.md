@@ -71,3 +71,60 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+## Consideraciones
+
+### Crear un usuario
+
+```js
+POST http://localhost:3000/users
+
+{
+  "email": "a@gmail.com",
+  "role": "Constructor",
+  "password": "123456"
+}
+```
+
+### Proyecto con base de datos en docker - mongo db
+
+```bash
+docker-compose up -d postgres
+docker-compose ps
+```
+
+## Pantallazos
+
+![Alt text](image.png)
+
+![Alt text](image-1.png)
+
+![Alt text](image-2.png)
+
+![Alt text](image-3.png)
+
+Se realiza de esta manera por falta de tiempo aunque deberia almacenarce un servidor de imagenes.
+
+![Alt text](image-4.png)
+
+![Alt text](image-5.png)
+
+![Alt text](image-6.png)
+
+![Alt text](image-7.png)
+
+Imagenes de DB mongo
+
+![Alt text](image-8.png)
+
+![Alt text](image-9.png)
+
+![Alt text](image-10.png)
+
+## Swagger
+
+```bash
+http://localhost:3000/docs
+```
+
+![Alt text](image-11.png)

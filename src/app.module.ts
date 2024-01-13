@@ -1,11 +1,16 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { HttpModule } from '@nestjs/axios';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from 'joi';
 
-import { enviroments } from './enviroments';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
+import { ProjectsModule } from './projects/projects.module';
+import { ApplicationsModule } from './applications/applications.module';
+import { DatabaseModule } from './database/database.module';
+import { enviroments } from './enviroments';
+import { AuthModule } from './auth/auth.module';
 import config from './config';
 
 @Module({
@@ -20,7 +25,12 @@ import config from './config';
         DATABASE_PORT: Joi.number().required(),
       }),
     }),
+    HttpModule,
     UsersModule,
+    ProjectsModule,
+    ApplicationsModule,
+    DatabaseModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

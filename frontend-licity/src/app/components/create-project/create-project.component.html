@@ -1,0 +1,108 @@
+<div style="text-align: center;">
+  <h1>Crear Proyecto</h1>
+</div>
+<form (submit)="submitProject()">
+  <label for="name" class="form-label">Nombre del Proyecto</label>
+  <input type="text" class="form-control" name="name" id="name" [(ngModel)]="newProject.name" required>
+
+  <label for="initial_date" class="form-label">Fecha Inicial</label>
+  <input type="date" class="form-control" name="initial_date" id="initial_date" [(ngModel)]="newProject.initial_date"
+    required>
+
+  <label for="final_date" class="form-label">Fecha Final</label>
+  <input type="date" class="form-control" name="final_date" id="final_date" [(ngModel)]="newProject.final_date"
+    required>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Valor Unitario (und)</th>
+        <th>
+          <button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#addItem">
+            <i class="fas fa-plus"></i>
+          </button>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of ListItems">
+        <td>{{ item.item }}</td>
+        <td>$ {{ item.cost_und }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Imagenes</th>
+        <th>URL Img</th>
+        <th>
+          <button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#agregarImagen">
+            <i class="fas fa-plus"></i>
+          </button>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let img of ListImages">
+        <td>{{ img.name_img }}</td>
+        <td>{{ img.url }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button type="submit" class="btn btn-primary btn-block">
+    Guardar
+  </button>
+</form>
+
+<div class="modal fade" id="addItem" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Agrega Items</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form (ngSubmit)="addItem()">
+        <div class="modal-body">
+          <label for="item" class="form-label">Item</label>
+          <input type="text" class="form-control" id="item" name="item" [(ngModel)]="newItem.item" required>
+
+          <label for="cost_und" class="form-label">Valor Unitario (und):</label>
+          <input type="number" class="form-control" id="cost_und" name="cost_und" [(ngModel)]="newItem.cost_und"
+            required>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="agregarImagen" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Agrega Imagenes</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form (ngSubmit)="addImages()">
+        <div class="modal-body">
+          <label for="name_img">Nombre</label>
+          <input type="text" class="form-control" id="name_img" name="name_img" [(ngModel)]="newImg.name_img" required>
+
+          <label for="cost_und">Url Imagen</label>
+          <input type="text" class="form-control" id="url" name="url" [(ngModel)]="newImg.url" required>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
