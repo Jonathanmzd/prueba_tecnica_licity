@@ -95,15 +95,13 @@ docker-compose ps
 
 ## Pantallazos
 
-![Alt text](image.png)
+Perfil Constructor
 
 ![Alt text](image-1.png)
 
 ![Alt text](image-2.png)
 
 ![Alt text](image-3.png)
-
-Se realiza de esta manera por falta de tiempo aunque deberia almacenarce un servidor de imagenes.
 
 ![Alt text](image-4.png)
 
@@ -113,13 +111,28 @@ Se realiza de esta manera por falta de tiempo aunque deberia almacenarce un serv
 
 ![Alt text](image-7.png)
 
-Imagenes de DB mongo
-
 ![Alt text](image-8.png)
 
 ![Alt text](image-9.png)
 
+Perfil Proveedor
+
 ![Alt text](image-10.png)
+
+![Alt text](image-11.png)
+
+![Alt text](image-12.png)
+
+![Alt text](image-13.png)
+
+Imagenes de DB mongo
+
+![Alt text](image-14.png)
+
+![Alt text](image-15.png)
+
+![Alt text](image-16.png)
+
 
 ## Swagger
 
@@ -127,4 +140,3 @@ Imagenes de DB mongo
 http://localhost:3000/docs
 ```
 
-![Alt text](image-11.png)

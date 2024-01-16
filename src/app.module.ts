@@ -11,6 +11,8 @@ import { ApplicationsModule } from './applications/applications.module';
 import { DatabaseModule } from './database/database.module';
 import { enviroments } from './enviroments';
 import { AuthModule } from './auth/auth.module';
+import { ImagesService } from './common/images/services/images.service';
+import { ImageModule } from './common/images/image.module';
 import config from './config';
 
 @Module({
@@ -31,8 +33,9 @@ import config from './config';
     ApplicationsModule,
     DatabaseModule,
     AuthModule,
+    ImageModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, ImagesService],
 })
 export class AppModule {}

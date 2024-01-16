@@ -96,11 +96,7 @@
           <input type="text" class="form-control" id="name_img" name="name_img" [(ngModel)]="newImg.name_img" required>
 
           <label for="cost_und">Url Imagen</label>
-          <input type="text" class="form-control" id="url" name="url" [(ngModel)]="newImg.url" required>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Guardar</button>
+          <input type="file" (change)="onFileSelected($event)" id="url" name="url" [(ngModel)]="newImg.url" required data-bs-dismiss="modal"/>
         </div>
       </form>
     </div>

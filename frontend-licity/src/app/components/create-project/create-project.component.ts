@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ProyectoService } from '../../services/proyecto.service';
 import { Proyecto } from '../../models/proyecto.model';
 import { Router } from '@angular/router';
+import { ImageUploadService } from '../../services/image-upload.service';
+import { FileResponse } from '../../interfaces/file-response.interface';
 
 @Component({
   selector: 'app-create-project',
@@ -33,10 +35,9 @@ export class CreateProjectComponent {
 
   images: File[] = [];
 
-  imagenPath = 'assets/imagesProject/'; // TODO: Falta realizar servicio de cargar img en Back
-
   constructor(
     private proyectoService: ProyectoService,
+    private imageUploadService: ImageUploadService,
     private router: Router,
   ) {}
 
@@ -65,5 +66,26 @@ export class CreateProjectComponent {
       (res) => this.router.navigate(['/lista-proyectos']),
       (err) => console.log(err),
     );
+  }
+
+  onFileSelected(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    const file = (inputElement.files as FileList)[0];
+
+    if (file) {
+      this.imageUploadService.uploadImage(file).subscribe(
+        (response: FileResponse) => {
+          console.log('Imagen subida con éxito:', response);
+          this.ListImages.push({ ...this.newImg, url: response.filename });
+          this.newImg = {
+            name_img: '',
+            url: '',
+          };
+        },
+        (error) => {
+          console.error('Error al subir la imagen:', error);
+        },
+      );
+    }
   }
 }
